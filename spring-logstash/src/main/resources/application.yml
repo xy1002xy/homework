@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: spring-logstash
+  profiles:
+    active: dev
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+
+server:
+  port: 10001
+
+logging:
+  config: classpath:logback-spring.xml
+  
