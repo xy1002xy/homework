@@ -26,6 +26,7 @@
 
         <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <encoder>
+
                 <pattern>${FILE_LOG_PATTERN}</pattern>
             </encoder>
             <file>${APP_LOG_FILE}</file>
