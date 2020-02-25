@@ -16,5 +16,4 @@ public class ResultVO {
 
     private String result;
 
-
 }
