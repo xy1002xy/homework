@@ -12,6 +12,11 @@ spring:
 server:
   port: 10001
 
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:8100/eureka
+
 logging:
   config: classpath:logback-spring.xml
   

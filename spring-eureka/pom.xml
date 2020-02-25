@@ -11,5 +11,17 @@
 
     <artifactId>spring-eruka</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>spring-cloud-demo</groupId>
+            <artifactId>spring-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

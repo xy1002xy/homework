@@ -12,7 +12,7 @@
     <modules>
         <module>spring-logstash</module>
         <module>spring-zuul-gateway</module>
-        <module>spring-eruka</module>
+        <module>spring-eureka</module>
         <module>spring-biz-server</module>
         <module>spring-hystirx</module>
         <module>spring-common</module>
