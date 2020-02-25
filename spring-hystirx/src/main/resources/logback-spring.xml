@@ -35,15 +35,15 @@
             </rollingPolicy>
         </appender>
 
-        <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-            <destination>192.168.139.130:4560</destination>
-            <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
-            <!--<customFields>{"appname":"myWebservice"}</customFields>-->
-        </appender>
+        <!--<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+            <!--<destination>192.168.139.130:4560</destination>-->
+            <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
+            <!--&lt;!&ndash;<customFields>{"appname":"myWebservice"}</customFields>&ndash;&gt;-->
+        <!--</appender>-->
 
         <logger name="com.huyibo" level="INFO" additivity="false">
             <appender-ref ref="APP_FILE"/>
-            <appender-ref ref="STASH"/>
+            <!--<appender-ref ref="STASH"/>-->
         </logger>
 
         <root>

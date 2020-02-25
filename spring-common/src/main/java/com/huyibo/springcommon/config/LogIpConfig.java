@@ -1,4 +1,4 @@
-package com.huyibo.springlogstash.config;
+package com.huyibo.springcommon.config;
 
 import ch.qos.logback.classic.pattern.ClassicConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
