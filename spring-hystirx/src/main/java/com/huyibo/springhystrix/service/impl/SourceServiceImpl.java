@@ -19,7 +19,7 @@ public class SourceServiceImpl implements SourceService {
     //    @HystrixCommand(fallbackMethod = "hiError",groupKey = "testGroup", threadPoolKey = "testThreadKey")
     //配置完cacheResult 之后 可以在cache 方法上放回结果，cacheKey 结果必须为String 当多次请求同一个key时，能够返回之前的查询
     //感觉实际生产中 如果已经有了fallback 接口 则接下来未必是需要cache 而是通过手动降级去实现
-    @CacheResult(cacheKeyMethod = "hiGetCache")
+//    @CacheResult(cacheKeyMethod = "hiGetCache")
     @HystrixCommand(fallbackMethod = "hiError", groupKey = "testGroup", threadPoolKey = "testThreadKey")
     public ResultVO source(String id) {
         if (StringUtils.isBlank(id)) {
@@ -34,8 +34,8 @@ public class SourceServiceImpl implements SourceService {
         return new ResultVO(3, "no!!");
     }
 
-    @HystrixCommand(fallbackMethod = "hiError")
-    public String hiGetCache(@CacheKey(value = "id") String id) {
-        return " hiGetCache";
-    }
+//    @HystrixCommand(fallbackMethod = "hiError")
+//    public String hiGetCache(@CacheKey(value = "id") String id) {
+//        return " hiGetCache";
+//    }
 }

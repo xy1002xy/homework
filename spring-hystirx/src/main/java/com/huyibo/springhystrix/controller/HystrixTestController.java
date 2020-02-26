@@ -22,7 +22,7 @@ public class HystrixTestController {
 
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     @ResponseBody
-    public ResultVO test(String id) {
+    public ResultVO test(@RequestParam("id") String id) {
         return sourceService.source(id);
     }
 

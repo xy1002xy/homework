@@ -5,7 +5,7 @@ import java.util.concurrent.locks.LockSupport;
 /**
  * Created by huyibo on 2020/2/25.
  */
-public class common {
+public class Common {
 
     private static Thread mainThread;
 

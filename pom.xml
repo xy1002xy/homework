@@ -89,6 +89,11 @@
                 <version>5.1</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.jmnarloch</groupId>
+                <artifactId>ribbon-discovery-filter-spring-cloud-starter</artifactId>
+                <version>2.1.0</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
