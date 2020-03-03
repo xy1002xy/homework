@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Base logback configuration provided for compatibility with Spring Boot 1.1
+-->
+
+<included>
+
+	<!--<include resource="com/huyibo/springcommon/log/defaults.xml" />-->
+
+	<conversionRule conversionWord="ip" converterClass="com.huyibo.springcommon.config.LogIpConfig" />
+
+	<property name="LOG_HOME" value="./logs"/>
+	<property name="APP_LOG_FILE" value="${LOG_HOME}/app.log"/>
+	<property name="ROLLING_LOG_FILE" value="${LOG_HOME}/app.%d{yyyy-MM-dd}.log"/>
+	<property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %ip %-5level [%thread] %logger{36} - %msg%n"/>
+	<property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %ip %-5level [%thread] %logger{36} - %msg%n"/>
+
+	<include resource="com/huyibo/springcommon/log/console-appender.xml" />
+	<include resource="com/huyibo/springcommon/log/file-appender.xml" />
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+
+</included>

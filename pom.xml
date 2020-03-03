@@ -16,6 +16,7 @@
         <module>spring-biz-server</module>
         <module>spring-hystirx</module>
         <module>spring-common</module>
+        <module>spring-cloud-db</module>
     </modules>
 
 

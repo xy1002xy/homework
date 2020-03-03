@@ -1,57 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true">
-    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+<configuration scan="true" debug="true">
+    <!--<include resource="org/springframework/boot/logging/logblogback-base.xml.xml"/>-->
     <jmxConfigurator/>
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <contextName>alps-da</contextName>
+    <contextName>spring-logstash</contextName>
 
-    <conversionRule conversionWord="ip" converterClass="com.huyibo.springcommon.config.LogIpConfig" />
 
+    <!-- dev 环境-->
     <springProfile name="dev">
-        <property name="LOG_HOME" value="./logs"/>
-        <property name="APP_LOG_FILE" value="${LOG_HOME}/app.log"/>
-        <property name="ROLLING_APP_LOG_FILE" value="${LOG_HOME}/app.%d{yyyy-MM-dd}.log"/>
-        <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %ip %-5level [%thread] %logger{36} - %msg%n"/>
-        <property name="CONSOLE_lOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %ip %-5level [%thread] %logger{36} - %msg%n"/>
-
-        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-                <pattern>${FILE_LOG_PATTERN}</pattern>
-            </encoder>
-        </appender>
-
-        <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <encoder>
-
-                <pattern>${FILE_LOG_PATTERN}</pattern>
-            </encoder>
-            <file>${APP_LOG_FILE}</file>
-            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${ROLLING_APP_LOG_FILE}</fileNamePattern>
-                <maxHistory>30</maxHistory>
-            </rollingPolicy>
-        </appender>
-
-        <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-            <destination>192.168.139.130:4560</destination>
-            <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
-            <!--<customFields>{"appname":"myWebservice"}</customFields>-->
-        </appender>
-
-        <logger name="com.huyibo" level="INFO" additivity="false">
-            <appender-ref ref="APP_FILE"/>
-            <appender-ref ref="STASH"/>
+        <!-- root 级别引用 -->
+        <include resource="com/huyibo/springcommon/log/logback-base.xml"></include>
+        <!--logstash-->
+        <include resource="com/huyibo/springcommon/log/logstash-appender.xml"></include>
+        <logger name="com.huyibo.springlogstash" level="DEBUG" additivity="false">
+            <appender-ref ref="LOG_STASH"/>
         </logger>
-
-        <root>
-            <level value="INFO" />
+        <!-- 非生产环境dao层输出 -->
+        <logger name="com.huyibo.springlogstash.dao" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
-        </root>
-
+            <appender-ref ref="FILE"/>
+        </logger>
     </springProfile>
-
 
 </configuration>

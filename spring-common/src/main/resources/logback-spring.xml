@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <!--<include resource="org/springframework/boot/logging/logblogback-base.xml.xml"/>-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <jmxConfigurator/>
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <contextName>alps-da</contextName>
+    <contextName>spring-common</contextName>
 
     <conversionRule conversionWord="ip" converterClass="com.huyibo.springcommon.config.LogIpConfig" />
 
@@ -17,6 +17,7 @@
         <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %ip %-5level [%thread] %logger{36} - %msg%n"/>
         <property name="CONSOLE_lOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %ip %-5level [%thread] %logger{36} - %msg%n"/>
 
+
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
                 <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -25,7 +26,6 @@
 
         <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <encoder>
-
                 <pattern>${FILE_LOG_PATTERN}</pattern>
             </encoder>
             <file>${APP_LOG_FILE}</file>
@@ -35,15 +35,14 @@
             </rollingPolicy>
         </appender>
 
-        <!--<appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-            <!--<destination>192.168.139.130:4560</destination>-->
-            <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
-            <!--&lt;!&ndash;<customFields>{"appname":"myWebservice"}</customFields>&ndash;&gt;-->
-        <!--</appender>-->
+        <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <destination>192.168.139.130:4560</destination>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+        </appender>
 
         <logger name="com.huyibo" level="INFO" additivity="false">
             <appender-ref ref="APP_FILE"/>
-            <!--<appender-ref ref="STASH"/>-->
+            <appender-ref ref="STASH"/>
         </logger>
 
         <root>

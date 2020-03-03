@@ -1,6 +1,8 @@
 package com.huyibo.springlogstash.controller;
 
+import com.huyibo.springlogstash.dao.DaoDemoService;
 import com.huyibo.springlogstash.feignsinvoke.Feignservice;
+import com.huyibo.springlogstash.vo.TestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class LogTestController {
     @Autowired
     private Feignservice feignservice;
 
+    @Autowired
+    private DaoDemoService daoDemoService;
+
     @RequestMapping("/test1")
     @ResponseBody
     public String test1(){
@@ -36,5 +41,14 @@ public class LogTestController {
         log.warn("This is a warn message!");
         log.error("This is error message!");
         return feignservice.sayHiFromClientOne("1");
+    }
+
+    @RequestMapping("/test3")
+    @ResponseBody
+    public String test3(){
+        TestVO testVO = new TestVO();
+        testVO.setAge(11);
+        testVO.setName("abcdefg");
+        return daoDemoService.debuInfoTest(testVO);
     }
 }
