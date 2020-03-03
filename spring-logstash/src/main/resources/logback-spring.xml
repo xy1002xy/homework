@@ -16,12 +16,23 @@
         <!--logstash-->
         <include resource="com/huyibo/springcommon/log/logstash-appender.xml"></include>
         <logger name="com.huyibo.springlogstash" level="DEBUG" additivity="false">
-            <appender-ref ref="LOG_STASH"/>
+            <appender-ref ref="LOG_STASH_DEV"/>
         </logger>
         <!-- 非生产环境dao层输出 -->
         <logger name="com.huyibo.springlogstash.dao" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="FILE"/>
+        </logger>
+    </springProfile>
+
+    <!-- prod 环境-->
+    <springProfile name="prod">
+        <!-- root 级别引用 -->
+        <include resource="com/huyibo/springcommon/log/logback-base.xml"></include>
+        <!--logstash-->
+        <include resource="com/huyibo/springcommon/log/logstash-appender.xml"></include>
+        <logger name="com.huyibo.springlogstash" level="DEBUG" additivity="false">
+            <appender-ref ref="LOG_STASH_DEV"/>
         </logger>
     </springProfile>
 

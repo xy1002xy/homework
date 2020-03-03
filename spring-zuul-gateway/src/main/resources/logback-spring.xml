@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true"  debug="true">
+<configuration scan="true" debug="true">
     <!--<include resource="org/springframework/boot/logging/logblogback-base.xml.xml"/>-->
     <jmxConfigurator/>
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
@@ -9,20 +9,31 @@
     <contextName>zuul-gateway</contextName>
 
 
-
+    <!-- dev 环境-->
     <springProfile name="dev">
-
-        <include resource="org/springframework/boot/logging/logback/logback-base.xml"/>
-
-        <!--<logger name="com.huyibo" level="DEBUG" additivity="false">-->
-            <!--<appender-ref ref="APP_FILE"/>-->
-        <!--</logger>-->
-        <!--<root>-->
-            <!--<level value="INFO" />-->
-            <!--<appender-ref ref="CONSOLE"/>-->
-        <!--</root>-->
-
+        <!-- root 级别引用 -->
+        <include resource="com/huyibo/springcommon/log/logback-base.xml"></include>
+        <!--logstash-->
+        <include resource="com/huyibo/springcommon/log/logstash-appender.xml"></include>
+        <logger name="com.huyibo.springlogstash" level="DEBUG" additivity="false">
+            <appender-ref ref="LOG_STASH_DEV"/>
+        </logger>
+        <!-- 非生产环境dao层输出 -->
+        <logger name="com.huyibo.springlogstash.dao" level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </logger>
     </springProfile>
 
+    <!-- prod 环境-->
+    <springProfile name="prod">
+        <!-- root 级别引用 -->
+        <include resource="com/huyibo/springcommon/log/logback-base.xml"></include>
+        <!--logstash-->
+        <include resource="com/huyibo/springcommon/log/logstash-appender.xml"></include>
+        <logger name="com.huyibo.springlogstash" level="DEBUG" additivity="false">
+            <appender-ref ref="LOG_STASH_DEV"/>
+        </logger>
+    </springProfile>
 
 </configuration>

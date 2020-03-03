@@ -70,7 +70,7 @@ public class LogAspect {
         try {
             method = target.getClass().getMethod(method.getName(), method.getParameterTypes());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("getMethod {}", e.getMessage(), e);
         }
         return method;
     }

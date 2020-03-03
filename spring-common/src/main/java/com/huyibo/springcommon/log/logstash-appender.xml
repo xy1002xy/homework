@@ -7,7 +7,7 @@ initialization performed by Boot
 
 <included>
 
-	<appender name="LOG_STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+	<appender name="LOG_STASH_DEV" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
 		<destination>192.168.139.130:4560</destination>
 		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
 		<!-- 待定 -->
