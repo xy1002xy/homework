@@ -24,13 +24,16 @@ public class LogTestController {
     @Autowired
     private DaoDemoService daoDemoService;
 
+
+    private static final String test = "测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节测试字节";
+
     @RequestMapping("/test1")
     @ResponseBody
     public String test1(){
-        System.out.println("test1 被调用");
-        log.info("你好啊e");
-        log.warn("This is a warn message!");
-        log.error("This is error message!");
+        log.info("你好啊||测试字节"+test);
+        log.error("This is error message!",new NullPointerException("这里有空指针"));
+//        log.warn("This is a warn message!");
+//        log.error("This is error message!");
         return "server被调用了！:";
     }
 
@@ -39,7 +42,7 @@ public class LogTestController {
     public String test2(){
         log.info("你好啊e");
         log.warn("This is a warn message!");
-        log.error("This is error message!");
+        log.error("This is error message!",new NullPointerException("这里有空指针"));
         return feignservice.sayHiFromClientOne("1");
     }
 

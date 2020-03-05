@@ -42,14 +42,15 @@ public class GrayReleaseFilter extends ZuulFilter {
 
         //todo 请求参数粒度 路由配置
         RequestContext rctx = RequestContext.getCurrentContext();
+        rctx.getRequest();
         log.info("=============== filter 初始化 ================");
         //todo 某个条件下 权重配比 这样搞搞
         if (true) {
             Random random = new Random();
-//            int seed = random.nextInt() * 100;
-//            if (seed <= 50) {
-            RibbonFilterContextHolder.getCurrentContext().add("tag", "pro");
-//            }
+            int seed = random.nextInt() * 100;
+            if (seed <= 10) {
+            RibbonFilterContextHolder.getCurrentContext().add("tag", "VERSION1");
+            }
         }
         return null;
     }

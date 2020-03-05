@@ -22,7 +22,7 @@ eureka:
 
   instance:
      metadataMap:
-          tag: pro
+          tag: VERSION1
 
 logging:
   config: classpath:logback-spring.xml

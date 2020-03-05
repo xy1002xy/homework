@@ -8,25 +8,11 @@
 
     <contextName>spring-logstash</contextName>
 
-    <!--<conversionRule conversionWord="ip" converterClass="com.huyibo.springcommon.config.LogIpConfig" />-->
+    <conversionRule conversionWord="ip" converterClass="com.huyibo.springcommon.config.LogIpConfig" />
 
     <springProfile name="dev">
-
         <!-- root 级别引用 -->
         <include resource="com/huyibo/springcommon/log/base.xml"></include>
-
-        <!-- 自定义级别logger  additivity 必须为false , 一般DEBUG 级别日志用于输出DAO 层的SQL，因此最好也将dao层固定 -->
-        <logger name="com.huyibo.springlogstash.**.dao" level="DEBUG" additivity="false">
-            <appender-ref ref="CONSOLE"/>
-            <appender-ref ref="FILE"/>
-        </logger>
-
-        <!-- ELK 先关配置使用样例 未完成  -->
-        <logger name="com.huyibo.springlogstash" level="INFO" additivity="false">
-            <appender-ref ref="CONSOLE"/>
-            <appender-ref ref="FILE"/>
-        </logger>
-
     </springProfile>
 
 
