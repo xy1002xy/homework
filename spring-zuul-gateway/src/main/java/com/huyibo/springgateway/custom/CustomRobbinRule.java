@@ -18,6 +18,7 @@ public class CustomRobbinRule extends RandomRule {
     private int total = 0;            // 总共被调用的次数，目前要求每台被调用5次
     private int currentIndex = 0;    // 当前提供服务的机器号
 
+    @Override
     public Server choose(Object key) {
         RequestContext rctx = RequestContext.getCurrentContext();
         log.info(rctx.getRequest().getRequestURL().toString());

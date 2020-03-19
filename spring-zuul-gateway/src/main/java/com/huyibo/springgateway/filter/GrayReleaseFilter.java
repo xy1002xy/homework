@@ -1,4 +1,4 @@
-package com.huyibo.springgateway.config;
+package com.huyibo.springgateway.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -20,10 +20,12 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 @Slf4j
 public class GrayReleaseFilter extends ZuulFilter {
 
+    @Override
     public String filterType() {
         return PRE_TYPE;
     }
 
+    @Override
     public int filterOrder() {
         return PRE_DECORATION_FILTER_ORDER - 1;
     }
@@ -33,10 +35,12 @@ public class GrayReleaseFilter extends ZuulFilter {
      *
      * @return
      */
+    @Override
     public boolean shouldFilter() {
         return true;
     }
 
+    @Override
     public Object run() throws ZuulException {
 
 
